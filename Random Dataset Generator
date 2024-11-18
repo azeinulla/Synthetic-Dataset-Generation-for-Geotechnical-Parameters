@@ -1,0 +1,30 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Define parameters
+parameters = {
+    "soil_density": {"mean": 2.65, "std": 0.1, "min": 2.4, "max": 2.8},
+    "shear_strength": {"mean": 25, "std": 5, "min": 15, "max": 35},
+}
+correlation_matrix = [[1, 0.8], [0.8, 1]]  # Example correlation
+
+# Generate synthetic data
+n_samples = 100
+means = [parameters[var]["mean"] for var in parameters]
+std_devs = [parameters[var]["std"] for var in parameters]
+cov_matrix = np.array(correlation_matrix) * np.outer(std_devs, std_devs)
+data = np.random.multivariate_normal(means, cov_matrix, size=n_samples)
+
+# Clip data to bounds
+for i, var in enumerate(parameters):
+    data[:, i] = np.clip(data[:, i], parameters[var]["min"], parameters[var]["max"])
+
+# Convert to DataFrame
+columns = list(parameters.keys())
+df = pd.DataFrame(data, columns=columns)
+
+# Save to CSV
+df.to_csv("synthetic_geotechnical_data.csv", index=False)
+print("Dataset saved as 'synthetic_geotechnical_data.csv'")
