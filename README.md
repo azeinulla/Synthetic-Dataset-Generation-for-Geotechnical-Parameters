@@ -2,6 +2,9 @@
 This project involves generating a synthetic dataset for geotechnical parameter testing by tailoring random data to reflect realistic field conditions. 
 This project generates a synthetic dataset tailored for geotechnical parameter testing, simulating realistic field conditions for research, analysis, and modeling. It incorporates statistical controls and realistic correlations to mimic real-world geotechnical behavior, making it ideal for testing predictive models or validating analytical approaches. 
 
+
+PRNGs (Pseudo-Random Number Generators), such as those in Python’s numpy library, are deterministic and reproduce results when seeded. They’re ideal for generating synthetic datasets based on specified statistical parameters.
+
 **Features**
 
 1. Correlation Between Variables
